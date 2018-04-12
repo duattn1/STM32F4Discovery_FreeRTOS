@@ -23,7 +23,7 @@ int main(void)
 	mutex = xSemaphoreCreateMutex();
 	if(mutex != NULL){
 		xTaskCreate(printingTask, "Task1", 128, "Task 1 is running", 1, NULL);
-		xTaskCreate(printingTask, "Task2", 128, "Task 2 is running", 2, NULL);	
+		xTaskCreate(printingTask, "Task2", 128, "Task 2 is running", 1, NULL);	
 	
 		vTaskStartScheduler();
 	} else {
@@ -41,11 +41,14 @@ void printingTask(void *pvParameters){
 	printedString = (char *) pvParameters;
 
 	while(1){
-		xSemaphoreTake(mutex, 500);
-		{
+		if(xSemaphoreTake(mutex, 0) == pdTRUE){
 			printf("%s\n", printedString);
+			xSemaphoreGive(mutex);				
+		} else {
+			/* Do nothing when taking the semaphore failed */
 		}
-		xSemaphoreGive(mutex);
+		/* Allow the other task to run*/
+		taskYIELD();
 	}
 }
 

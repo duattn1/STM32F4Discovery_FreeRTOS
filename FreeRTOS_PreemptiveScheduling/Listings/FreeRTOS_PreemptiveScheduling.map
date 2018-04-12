@@ -1866,20 +1866,20 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-         0          0          0          0          0      12028   event_groups.o
-       304         46          0         24      76800       3835   heap_2.o
-       148          0          0          0          0       3462   list.o
-       140         70          0          0          0      13499   main.o
-      1014         92          0         12          0      12197   port.o
-      1780         20          0          0         64      16190   queue.o
-       418         30         23          0          0       7450   retarget_io.o
-        64         26        392          0       1536        908   startup_stm32f407xx.o
-       100         18          0          4          0       1429   system_stm32f4xx.o
-      2482        338          0         60        200      21325   tasks.o
-      1138        116          0         20         40      18023   timers.o
+         0          0          0          0          0      11972   event_groups.o
+       304         46          0         24      76800       3763   heap_2.o
+       148          0          0          0          0       3374   list.o
+       140         70          0          0          0      13419   main.o
+      1014         92          0         12          0      12017   port.o
+      1780         20          0          0         64      15962   queue.o
+       418         30         23          0          0       7438   retarget_io.o
+        64         26        392          0       1536        892   startup_stm32f407xx.o
+       100         18          0          4          0       1381   system_stm32f4xx.o
+      2482        338          0         60        200      20997   tasks.o
+      1138        116          0         20         40      17803   timers.o
 
     ----------------------------------------------------------------------
-      7596        756        450        120      78640     110346   Object Totals
+      7596        756        450        120      78640     109018   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          8          0          3          0          0          0   (incl. Padding)
 
@@ -1967,8 +1967,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10966        952        450        132      78988     104738   Grand Totals
-     10966        952        450        132      78988     104738   ELF Image Totals
+     10966        952        450        132      78988     103410   Grand Totals
+     10966        952        450        132      78988     103410   ELF Image Totals
      10966        952        450        132          0          0   ROM Totals
 
 ==============================================================================

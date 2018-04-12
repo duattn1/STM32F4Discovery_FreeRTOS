@@ -23,7 +23,6 @@ int main(void)
 {
 	/* Create the queue */
 	mainQueue = xQueueCreate(5, 1);
-
 	if(mainQueue != NULL)
 	{
 		/* Create sending tasks */
@@ -32,7 +31,6 @@ int main(void)
 	
 		/* Create receiving task */
 		xTaskCreate(receivingTask, "receivingTask", 128, NULL, 2, NULL);
-		
 		vTaskStartScheduler();		
 	} else {
 		printf("Creating queue failed\n");
@@ -44,12 +42,11 @@ int main(void)
 	}  
 }
 
-
 void sendingTask(void *pvParameter){
 	uint8_t sentData;
 	portBASE_TYPE status;
 
-	sentData = *((uint8_t*)pvParameter);
+	sentData = (uint8_t)pvParameter;
 
 	while(1)
 	{
@@ -62,7 +59,7 @@ void sendingTask(void *pvParameter){
 		} 
 		
 		/* Delay for each sending time */
-		vTaskDelay(1000);
+		vTaskDelay(500);
 
 		/* Allow other sender task to execute */
 		taskYIELD();
@@ -77,12 +74,14 @@ void receivingTask(void *pvParameter){
 	{
 		/* Note that the last parameter of xQueueReceive() is the maximum wait time 
 		* that the task remains in Blocked state.
+		* It should NOT has value of 0 (means waiting time = 0), because the receiving task has higher priority.
+		* Therefore, the function will return immediately when the queue is empty.
 		*	It must be greater than the data sending speed. In this case it must greater than 1000ms */
-		status = xQueueReceive(mainQueue, &receivedData, 1001);
+		status = xQueueReceive(mainQueue, &receivedData, 501);
 
 		if(status == pdPASS)
 		{
-			printf("  Received: %d\n", (uint8_t)receivedData);
+			printf("  Received: %d\n", receivedData);
 		}
 		else
 		{
